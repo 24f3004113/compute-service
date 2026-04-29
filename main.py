@@ -9,11 +9,11 @@ class ComputeRequest(BaseModel):
     b: int
 
 @app.get("/health")
-async def health():
+def health():
     return {"status": "ok"}
 
 @app.post("/compute")
-async def compute(req: ComputeRequest):
+def compute(req: ComputeRequest):
     s = req.a + req.b
     p = req.a * req.b
     v = hashlib.sha256(f"sum:{s}:product:{p}".encode()).hexdigest()[:10]
